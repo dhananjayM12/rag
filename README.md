@@ -1,10 +1,16 @@
 # PrepPath — UPSC Study App
 
-A commercializable UPSC preparation web app. **Milestone 1** delivers the core
-feature: an **interactive flowchart of the entire syllabus**, drilling from
-exam → paper → topic → subtopic → **micro-topic leaf nodes that carry
-source-backed study content**. RAG Q&A and Mains answer-evaluation are scaffolded
-(wired endpoints + UI) and filled in by later milestones.
+A commercializable UPSC preparation web app.
+
+- **Milestone 1** — an **interactive flowchart of the entire syllabus**, drilling
+  from exam → paper → topic → subtopic → **micro-topic leaf nodes that carry
+  source-backed study content**.
+- **Milestone 2** — a **local RAG Q&A** system (`/ask`): questions are embedded,
+  matched against ingested official-source content via vector search, and
+  answered with citations. Runs fully locally; pluggable embedder (hashing or
+  sentence-transformers) and LLM (extractive or Ollama).
+
+Mains answer-evaluation remains a wired stub for the next milestone.
 
 ## Stack
 
@@ -81,11 +87,24 @@ frontend/
 docker-compose.yml
 ```
 
+## RAG Q&A pipeline (Milestone 2)
+
+```
+content (markdown) → chunk → embed (local) → content_chunks (+ vector)
+question → embed → vector search (pgvector / cosine) → top-k chunks
+        → generate answer (extractive or local LLM) + citations + related topics
+```
+
+- Rebuild the index any time with `python -m app.rag.ingest`.
+- Code: `app/rag/{chunk,ingest,retriever,generator}.py`,
+  `app/services/embeddings.py`. Switch backends via env (`EMBEDDING_BACKEND`,
+  `LLM_BACKEND`) — see `backend/.env.example`.
+
 ## Roadmap (scaffolded, build next)
 
-- **RAG Q&A** (`/api/ask`): embed with a local model, retrieve via pgvector from
-  ingested official sources, generate cited answers with a local LLM.
 - **Answer evaluation** (`/api/evaluate`): rubric-based grading with a local LLM.
+- **Source ingestion**: pull fresh content from official feeds (PIB, PRS, etc.)
+  into the same chunk/embed pipeline for current-affairs coverage.
 - **Student features**: progress tracking + spaced revision, previous-year-question
   mapping to leaf nodes, current-affairs feed tagged to syllabus nodes, auth +
   subscription tiers, PWA/offline.

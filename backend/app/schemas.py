@@ -54,10 +54,17 @@ class AskRequest(BaseModel):
     node_slug: str | None = None
 
 
+class RelatedTopic(BaseModel):
+    slug: str
+    title: str
+    score: float
+
+
 class AskResponse(BaseModel):
     answer: str
     citations: list[Source] = []
-    status: str = "coming_soon"
+    related: list[RelatedTopic] = []
+    status: str = "ok"
 
 
 class EvaluateRequest(BaseModel):

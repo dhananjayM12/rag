@@ -66,10 +66,20 @@ export function fetchContent(slug: string): Promise<ContentOut> {
   return getJSON<ContentOut>(`/api/content/${encodeURIComponent(slug)}`);
 }
 
-export async function postAsk(question: string): Promise<{
+export interface RelatedTopic {
+  slug: string;
+  title: string;
+  score: number;
+}
+
+export interface AskResponse {
   answer: string;
+  citations: Source[];
+  related: RelatedTopic[];
   status: string;
-}> {
+}
+
+export async function postAsk(question: string): Promise<AskResponse> {
   const res = await fetch(`${apiBase()}/api/ask`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },

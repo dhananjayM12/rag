@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 8000
 
 # Run migrations + seed, then start the API.
-CMD ["sh", "-c", "alembic upgrade head && python -m app.seed.syllabus_seed && uvicorn app.main:app --host 0.0.0.0 --port 8000"]
+CMD ["sh", "-c", "alembic upgrade head && python -m app.seed.syllabus_seed && python -m app.rag.ingest && uvicorn app.main:app --host 0.0.0.0 --port 8000"]

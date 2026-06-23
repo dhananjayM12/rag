@@ -71,11 +71,7 @@ def test_content_placeholder_for_empty_leaf(client):
     assert "coming soon" in body["body_md"].lower()
 
 
-def test_stub_endpoints(client):
-    ask = client.post("/api/ask", json={"question": "What is Article 21?"})
-    assert ask.status_code == 200
-    assert ask.json()["status"] == "coming_soon"
-
+def test_evaluate_stub(client):
     ev = client.post(
         "/api/evaluate",
         json={"question": "Discuss DPSP.", "answer": "word " * 10, "word_limit": 250},

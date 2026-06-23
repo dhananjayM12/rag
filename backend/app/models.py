@@ -113,6 +113,37 @@ class Content(Base):
             return []
 
 
+class ContentChunk(Base):
+    """A retrievable chunk of leaf content, with its embedding.
+
+    Denormalises node slug/title/sources so retrieval can build citations
+    without extra joins. Rebuilt by ``app.rag.ingest``.
+    """
+
+    __tablename__ = "content_chunks"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    content_id: Mapped[int] = mapped_column(
+        ForeignKey("contents.id", ondelete="CASCADE"), index=True
+    )
+    node_id: Mapped[int] = mapped_column(
+        ForeignKey("syllabus_nodes.id", ondelete="CASCADE"), index=True
+    )
+    node_slug: Mapped[str] = mapped_column(String(550))
+    node_title: Mapped[str] = mapped_column(String(500))
+    position: Mapped[int] = mapped_column(Integer, default=0)
+    text: Mapped[str] = mapped_column(Text)
+    sources: Mapped[str] = mapped_column(Text, default="[]")  # JSON list of {title,url}
+    embedding = mapped_column(Embedding, nullable=True)
+
+    @property
+    def sources_list(self) -> list[dict]:
+        try:
+            return json.loads(self.sources or "[]")
+        except json.JSONDecodeError:
+            return []
+
+
 class UserProgress(Base):
     """Per-user study progress on a node. Scaffolded for a later milestone."""
 
