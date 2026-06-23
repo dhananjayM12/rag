@@ -14,6 +14,7 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+    restart: unless-stopped
 
   backend:
     build: ./backend
@@ -21,14 +22,49 @@ services:
       DATABASE_URL: postgresql+psycopg2://upsc:upsc@db:5432/upsc
       CORS_ORIGINS: http://localhost:3000
       EMBED_DIM: "384"
+      # Switch to "ollama" together with `--profile llm` for generative answers.
+      LLM_BACKEND: ${LLM_BACKEND:-extractive}
+      OLLAMA_URL: http://ollama:11434
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3}
     ports:
       - "8000:8000"
     depends_on:
       db:
         condition: service_healthy
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health', timeout=5)
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 40s
+    restart: unless-stopped
+
+  # Scheduled auto-ingestion of official source feeds (current affairs).
+  worker:
+    build: ./backend
+    command: ["python", "-m", "app.worker"]
+    environment:
+      DATABASE_URL: postgresql+psycopg2://upsc:upsc@db:5432/upsc
+      EMBED_DIM: "384"
+      INGEST_INTERVAL_MINUTES: ${INGEST_INTERVAL_MINUTES:-360}
+      INGEST_ON_STARTUP: "true"
+      # Override SOURCE_FEEDS here to customise which official feeds are pulled.
+    depends_on:
+      db:
+        condition: service_healthy
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:8000
     environment:
       NEXT_PUBLIC_API_URL: http://localhost:8000
       API_URL_INTERNAL: http://backend:8000
@@ -36,6 +72,20 @@ services:
       - "3000:3000"
     depends_on:
       - backend
+    restart: unless-stopped
+
+  # Optional local LLM for generative answers. Enable with:
+  #   LLM_BACKEND=ollama docker compose --profile llm up
+  # then pull a model:  docker compose exec ollama ollama pull llama3
+  ollama:
+    image: ollama/ollama:latest
+    profiles: ["llm"]
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama:/root/.ollama
+    restart: unless-stopped
 
 volumes:
   pgdata:
+  ollama:

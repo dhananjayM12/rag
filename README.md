@@ -22,11 +22,13 @@ Mains answer-evaluation remains a wired stub for the next milestone.
 |-------|------|
 | Frontend | Next.js 14 (App Router, TypeScript), React Flow + dagre, Tailwind |
 | Backend | FastAPI, SQLAlchemy 2, Alembic |
-| Database | PostgreSQL + pgvector (vector column ready for RAG) |
-| AI (later) | Local/open models — sentence-transformers embeddings, local LLM for Q&A and grading |
+| Worker | APScheduler — auto-fetches official feeds on a schedule |
+| Database | PostgreSQL + pgvector |
+| AI | Local/open models — hashing or sentence-transformers embeddings; extractive or local Ollama LLM |
 
 Content is sourced from **official/open resources only** (UPSC syllabus, NCERT,
-the Constitution, IMD, NITI Aayog, ministries) — safe for commercial use.
+the Constitution, IMD, NITI Aayog, ministries, PIB, PRS, RBI) — safe for
+commercial use.
 
 ## Quick start (Docker)
 
@@ -34,10 +36,26 @@ the Constitution, IMD, NITI Aayog, ministries) — safe for commercial use.
 docker compose up --build
 ```
 
+Brings up the full stack — `db` (Postgres + pgvector), `backend`, `frontend`,
+and `worker`:
+
 - Frontend: http://localhost:3000  (start at **/flowchart**)
 - Backend API: http://localhost:8000  (`/docs` for OpenAPI)
 
-The backend container runs migrations and seeds the syllabus automatically.
+The **backend** runs migrations, seeds the syllabus, and indexes seeded content
+on startup. The **worker** fetches the configured official feeds immediately and
+then every 6 hours (configurable), so current affairs stay fresh with no manual
+step. Failing feeds are skipped, never crashing the loop.
+
+### Optional: local LLM (Ollama) for generative answers
+
+```bash
+LLM_BACKEND=ollama docker compose --profile llm up --build
+docker compose exec ollama ollama pull llama3   # one-time model pull
+```
+
+Without this, answers are **extractive** (faithful, grounded source text) and
+need no model download.
 
 ## Local development
 
@@ -78,17 +96,20 @@ npm run dev
 ```
 backend/
   app/
-    models.py          # SyllabusNode tree, Content (+ pgvector embedding), progress/bookmark stubs
-    routers/           # syllabus, content, rag (stub), evaluate (stub)
+    models.py          # SyllabusNode tree, Content, ContentChunk, Article(+Chunk)
+    routers/           # syllabus, content, rag, evaluate (stub), articles
     seed/              # syllabus.json + loader
-    services/embeddings.py  # seam for the local embedding model (RAG milestone)
+    services/embeddings.py  # hashing / sentence-transformers embedders
+    rag/               # chunk, ingest, retriever, generator, ingest_sources
+    rag/sources/       # SourceConnector + RSS connectors
+    worker.py          # APScheduler-driven auto-ingestion loop
   alembic/             # migrations (creates pgvector extension)
   tests/               # pytest, SQLite-backed
 frontend/
-  app/                 # /, /flowchart, /topic/[slug], /ask, /evaluate
+  app/                 # /, /flowchart, /topic/[slug], /ask, /evaluate, /current-affairs
   components/          # FlowChart, SyllabusNode, ContentDrawer
   lib/                 # api client, dagre layout
-docker-compose.yml
+docker-compose.yml     # db + backend + frontend + worker (+ optional ollama)
 ```
 
 ## RAG Q&A pipeline (Milestone 2)
@@ -104,23 +125,22 @@ question → embed → vector search (pgvector / cosine) → top-k chunks
   `app/services/embeddings.py`. Switch backends via env (`EMBEDDING_BACKEND`,
   `LLM_BACKEND`) — see `backend/.env.example`.
 
-## Official-source ingestion (Milestone 3)
+## Automated current-affairs ingestion (Milestone 4)
 
-```bash
-# Fetch + index the configured feeds (PIB, PRS by default):
-python -m app.rag.ingest_sources
-```
+The `worker` service auto-fetches the official feeds — **no manual step**:
 
-- Feeds are set via `SOURCE_FEEDS` ("Name|url" pairs) in `backend/.env.example`.
-  Official/open sources only — commercially safe.
-- Connectors live in `app/rag/sources/` (RSS via the standard library; add new
-  connectors by implementing `SourceConnector`). A failing feed is skipped, not
-  fatal. Articles are de-duped on `(source, external_id)`.
-- Ingested articles are chunked + embedded into `article_chunks` and retrieved
-  alongside seeded content, so `/ask` can cite current affairs. List endpoint:
-  `GET /api/articles`; UI at `/current-affairs`.
-- Not run at container start (network may be restricted) — run it manually or on
-  a schedule (cron).
+- Runs an initial ingestion on startup, then every `INGEST_INTERVAL_MINUTES`
+  (default **360** = 6 hours). Driven by `app/worker.py` (APScheduler).
+- Feeds: `SOURCE_FEEDS` ("Name|url" RSS pairs; PIB, PRS, RBI by default) —
+  official/open only, commercially safe. A failing feed is **skipped, not
+  fatal**, so the loop survives outages.
+- Connectors in `app/rag/sources/` (RSS via the standard library; add a source
+  by implementing `SourceConnector`). Articles are de-duped on
+  `(source, external_id)`, chunked + embedded into `article_chunks`, and
+  retrieved alongside seeded content so `/ask` can cite current affairs.
+  Endpoint `GET /api/articles`; UI at `/current-affairs`.
+
+Manual one-off run (e.g. for local dev): `python -m app.rag.ingest_sources`.
 
 ## Roadmap (scaffolded, build next)
 

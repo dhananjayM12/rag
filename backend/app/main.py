@@ -7,7 +7,7 @@ from app.routers import articles, content, evaluate, rag, syllabus
 app = FastAPI(
     title="UPSC Study App API",
     description="Backend for the UPSC study app: syllabus flowchart, "
-    "RAG Q&A (stub), and answer evaluation (stub).",
+    "local RAG Q&A, auto-ingested current affairs, and answer evaluation (stub).",
     version="0.1.0",
 )
 

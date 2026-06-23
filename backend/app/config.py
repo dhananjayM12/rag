@@ -21,13 +21,21 @@ class Settings(BaseSettings):
     rag_top_k: int = 4
 
     # Official-source ingestion (RSS feeds; official/open sources only).
-    # Comma-separated "Name|url" pairs. Run `python -m app.rag.ingest_sources`.
+    # Comma-separated "Name|url" pairs. Auto-fetched by the worker (app.worker)
+    # and runnable manually via `python -m app.rag.ingest_sources`. Any feed that
+    # fails is skipped, so extra/optional feeds never break a run.
     source_feeds: str = (
         "PIB|https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3,"
-        "PRS|https://prsindia.org/rss.xml"
+        "PRS|https://prsindia.org/rss.xml,"
+        "RBI|https://www.rbi.org.in/notifications_rss.xml,"
+        "RBI-PressReleases|https://www.rbi.org.in/pressreleases_rss.xml"
     )
     source_fetch_timeout: int = 20
     source_max_items_per_feed: int = 40
+
+    # Scheduled auto-ingestion (the worker container).
+    ingest_interval_minutes: int = 360  # every 6 hours
+    ingest_on_startup: bool = True
 
     @property
     def source_feed_list(self) -> list[tuple[str, str]]:
