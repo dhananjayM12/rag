@@ -1,0 +1,325 @@
+[
+  {
+    "exam": "prelims",
+    "level": "stage",
+    "title": "Prelims",
+    "children": [
+      {
+        "level": "paper",
+        "title": "General Studies Paper I",
+        "children": [
+          { "level": "topic", "title": "History of India and Indian National Movement" },
+          { "level": "topic", "title": "Indian and World Geography" },
+          { "level": "topic", "title": "Indian Polity and Governance" },
+          { "level": "topic", "title": "Economic and Social Development" },
+          { "level": "topic", "title": "Environmental Ecology, Biodiversity and Climate Change" },
+          { "level": "topic", "title": "General Science" },
+          { "level": "topic", "title": "Current Events of National and International Importance" }
+        ]
+      },
+      {
+        "level": "paper",
+        "title": "CSAT Paper II",
+        "children": [
+          { "level": "topic", "title": "Comprehension" },
+          { "level": "topic", "title": "Interpersonal and Communication Skills" },
+          { "level": "topic", "title": "Logical Reasoning and Analytical Ability" },
+          { "level": "topic", "title": "Decision Making and Problem Solving" },
+          { "level": "topic", "title": "Basic Numeracy and Data Interpretation" }
+        ]
+      }
+    ]
+  },
+  {
+    "exam": "mains",
+    "level": "stage",
+    "title": "Mains",
+    "children": [
+      { "level": "paper", "title": "Essay" },
+      {
+        "level": "paper",
+        "title": "GS Paper I — Heritage, History, Geography & Society",
+        "children": [
+          {
+            "level": "topic",
+            "title": "Indian Heritage and Culture",
+            "children": [
+              {
+                "level": "subtopic",
+                "title": "Art Forms",
+                "children": [
+                  {
+                    "level": "micro",
+                    "title": "Classical Dances of India",
+                    "content": {
+                      "summary": "The eight Sangeet Natak Akademi-recognised classical dance forms, their regions, and defining features.",
+                      "body_md": "## Classical Dances of India\n\nThe Sangeet Natak Akademi recognises **eight classical dance forms**, each rooted in the *Natya Shastra* of Bharata Muni and tied to a region and temple/court tradition.\n\n| Dance | State of Origin | Key Features |\n|-------|-----------------|--------------|\n| **Bharatanatyam** | Tamil Nadu | Temple (Devadasi) tradition; fixed upper torso, bent legs (*araimandi*), expressive mudras |\n| **Kathak** | Uttar Pradesh | Storytelling; fast footwork (*tatkar*), spins (*chakkars*); both Hindu and Mughal court influence |\n| **Kathakali** | Kerala | Elaborate make-up and masks; based on epics; vigorous male-dominated drama |\n| **Kuchipudi** | Andhra Pradesh | Began as a dance-drama; combines fast rhythm with grace (e.g. dancing on a brass plate) |\n| **Odissi** | Odisha | Tribhanga posture; lyrical, sculpturesque; linked to Jagannath temple |\n| **Manipuri** | Manipur | Devotional Vaishnavite themes (Ras Leela); gentle, rounded movements |\n| **Mohiniyattam** | Kerala | Solo female 'dance of the enchantress'; graceful swaying (lasya) |\n| **Sattriya** | Assam | From Vaishnavite monasteries (sattras) founded by Sankardeva |\n\n### Exam Pointers\n- **Mudras** (hand gestures) and *abhinaya* (expression) are common to all forms.\n- Distinguish *tandava* (vigorous, masculine) from *lasya* (graceful, feminine).\n- Frequently asked: matching dance form to state, and recent recognitions.",
+                      "sources": [
+                        { "title": "Sangeet Natak Akademi — Classical Dance", "url": "https://sangeetnatak.gov.in/" },
+                        { "title": "Ministry of Culture, Government of India", "url": "https://www.indiaculture.gov.in/" }
+                      ]
+                    }
+                  },
+                  { "level": "micro", "title": "Indian Classical Music (Hindustani & Carnatic)" },
+                  { "level": "micro", "title": "Indian Painting Traditions" },
+                  { "level": "micro", "title": "Folk and Tribal Dances" }
+                ]
+              },
+              {
+                "level": "subtopic",
+                "title": "Architecture, Sculpture and Pottery",
+                "children": [
+                  {
+                    "level": "micro",
+                    "title": "Temple Architecture",
+                    "content": {
+                      "summary": "Nagara, Dravida and Vesara styles of Hindu temple architecture, with defining elements and examples.",
+                      "body_md": "## Temple Architecture\n\nIndian temple architecture evolved into three broad styles:\n\n### 1. Nagara (North Indian)\n- Built on a raised platform; **curvilinear shikhara** (tower) over the sanctum.\n- No elaborate boundary walls or gateways.\n- Sub-schools: **Odisha** (Konark Sun Temple, Lingaraja), **Khajuraho/Chandela** (Kandariya Mahadeva), **Solanki** (Modhera Sun Temple).\n\n### 2. Dravida (South Indian)\n- Enclosed within a **compound wall** with towering **gopurams** (gateways).\n- The main tower is the **vimana** (stepped pyramidal), topped by a *shikhara*.\n- Examples: Brihadeshwara Temple (Thanjavur, Cholas), Meenakshi Temple (Madurai).\n\n### 3. Vesara (Hybrid / Deccan)\n- Blends Nagara and Dravida features; associated with the **Chalukyas and Hoysalas**.\n- Star-shaped platforms and intricate carving: Hoysaleswara Temple (Halebidu), Chennakeshava (Belur).\n\n### Key Terms\n- **Garbhagriha** — sanctum housing the deity.\n- **Mandapa** — pillared hall; **Antarala** — vestibule connecting it to the sanctum.\n- **Amalaka & Kalasha** — crowning elements of the Nagara shikhara.",
+                      "sources": [
+                        { "title": "NCERT — An Introduction to Indian Art (Class XI)", "url": "https://ncert.nic.in/textbook.php" },
+                        { "title": "Archaeological Survey of India", "url": "https://asi.nic.in/" }
+                      ]
+                    }
+                  },
+                  { "level": "micro", "title": "Indo-Islamic Architecture" },
+                  { "level": "micro", "title": "Indus Valley Town Planning" }
+                ]
+              }
+            ]
+          },
+          {
+            "level": "topic",
+            "title": "Modern Indian History (mid-18th century to present)",
+            "children": [
+              {
+                "level": "subtopic",
+                "title": "The Freedom Struggle",
+                "children": [
+                  {
+                    "level": "micro",
+                    "title": "Revolt of 1857",
+                    "content": {
+                      "summary": "Causes, course, leaders and consequences of the 1857 uprising — India's first major revolt against the British East India Company.",
+                      "body_md": "## Revolt of 1857\n\nThe Revolt of 1857, often called the **First War of Independence**, began as a sepoy mutiny at Meerut on **10 May 1857** and spread across north and central India.\n\n### Causes\n- **Political:** Doctrine of Lapse (annexation of Jhansi, Satara, Nagpur) and the annexation of Awadh (1856).\n- **Economic:** Heavy land revenue, ruin of artisans, drain of wealth.\n- **Social/Religious:** Fear of conversion, abolition of practices, racial arrogance.\n- **Military:** Discontent over pay and the **greased cartridges** (Enfield rifle) rumoured to use cow and pig fat — the immediate trigger.\n\n### Major Centres and Leaders\n| Centre | Leader |\n|--------|--------|\n| Delhi | Bahadur Shah Zafar / General Bakht Khan |\n| Kanpur | Nana Saheb, Tatya Tope |\n| Lucknow | Begum Hazrat Mahal |\n| Jhansi | Rani Lakshmibai |\n| Bihar (Jagdishpur) | Kunwar Singh |\n\n### Consequences\n- End of **East India Company rule**; the **Government of India Act, 1858** transferred power to the British Crown.\n- Reorganisation of the army (higher ratio of European troops).\n- Policy of divide and rule; promise of non-interference in religious matters (Queen's Proclamation).\n\n### Why it Failed\nLimited geographic spread, lack of unified leadership and common ideology, and superior British resources and communication.",
+                      "sources": [
+                        { "title": "NCERT — Themes in Indian History Part III", "url": "https://ncert.nic.in/textbook.php" },
+                        { "title": "National Archives of India", "url": "https://www.nationalarchives.nic.in/" }
+                      ]
+                    }
+                  },
+                  { "level": "micro", "title": "Moderates and Extremists (1885–1919)" },
+                  {
+                    "level": "micro",
+                    "title": "Gandhian Movements",
+                    "content": {
+                      "summary": "Non-Cooperation, Civil Disobedience and Quit India — Gandhi's mass movements and their significance.",
+                      "body_md": "## Gandhian Mass Movements\n\nMahatma Gandhi transformed the freedom struggle into a **mass movement** built on *satyagraha* (truth-force) and non-violence.\n\n### 1. Non-Cooperation Movement (1920–22)\n- Triggered by the **Jallianwala Bagh massacre (1919)**, Rowlatt Act and the Khilafat issue.\n- Boycott of schools, courts, foreign goods, titles and councils.\n- Withdrawn after the **Chauri Chaura incident** (Feb 1922).\n\n### 2. Civil Disobedience Movement (1930–34)\n- Began with the **Dandi Salt March** (12 March 1930) breaking the salt law.\n- Mass defiance of laws; Gandhi–Irwin Pact (1931) and the Round Table Conferences.\n\n### 3. Quit India Movement (1942)\n- Launched after the failure of the **Cripps Mission**; slogan **'Do or Die'**.\n- Largely leaderless after mass arrests; marked the final push toward independence.\n\n### Significance\n- Brought peasants, women, students and workers into the national movement.\n- Established non-violent mass struggle as the defining method of Indian nationalism.",
+                      "sources": [
+                        { "title": "NCERT — India's Struggle for Independence themes", "url": "https://ncert.nic.in/textbook.php" },
+                        { "title": "Gandhi Heritage Portal (Ministry of Culture)", "url": "https://www.gandhiheritageportal.org/" }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "level": "topic",
+            "title": "World History",
+            "children": [
+              { "level": "micro", "title": "Industrial Revolution" },
+              { "level": "micro", "title": "World Wars and their Effects" },
+              { "level": "micro", "title": "Decolonisation" }
+            ]
+          },
+          {
+            "level": "topic",
+            "title": "Indian Society",
+            "children": [
+              { "level": "micro", "title": "Salient Features of Indian Society" },
+              { "level": "micro", "title": "Role of Women and Women's Organisations" },
+              { "level": "micro", "title": "Urbanisation — Problems and Remedies" }
+            ]
+          },
+          {
+            "level": "topic",
+            "title": "Geography of the World",
+            "children": [
+              {
+                "level": "subtopic",
+                "title": "Physical Geography of India",
+                "children": [
+                  {
+                    "level": "micro",
+                    "title": "Indian Monsoon",
+                    "content": {
+                      "summary": "Mechanism, onset, withdrawal and significance of the Indian monsoon system.",
+                      "body_md": "## The Indian Monsoon\n\nThe monsoon is a **seasonal reversal of winds** that brings ~75% of India's annual rainfall and underpins Indian agriculture and the economy.\n\n### Mechanism\n- **Differential heating** of land and sea creates a low-pressure trough over north-west India in summer.\n- The **ITCZ (Inter-Tropical Convergence Zone)** shifts northward, drawing in moisture-laden south-west winds.\n- The **Coriolis force** deflects the south-east trade winds (from the southern hemisphere) to become the **south-west monsoon**.\n\n### Branches (South-West Monsoon, June–Sept)\n- **Arabian Sea branch** — strikes the Western Ghats (heavy orographic rainfall on the windward side).\n- **Bay of Bengal branch** — moves up the Ganga plains; Mawsynram/Cherrapunji receive extreme rainfall due to funnelling by hills.\n\n### Key Phenomena\n- **Onset:** Kerala coast around 1 June.\n- **Break in monsoon:** dry spells during the rainy season.\n- **El Niño / La Niña (ENSO)** and the **Indian Ocean Dipole (IOD)** strongly influence monsoon strength.\n- **Retreating (North-East) monsoon** (Oct–Dec) brings rain to Tamil Nadu's Coromandel coast.\n\n### Significance\nGoverns kharif cropping, reservoir levels, hydropower and rural demand — making monsoon forecasting (IMD) economically vital.",
+                      "sources": [
+                        { "title": "India Meteorological Department (IMD)", "url": "https://mausam.imd.gov.in/" },
+                        { "title": "NCERT — India: Physical Environment (Class XI)", "url": "https://ncert.nic.in/textbook.php" }
+                      ]
+                    }
+                  },
+                  { "level": "micro", "title": "Physiographic Divisions of India" }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "level": "paper",
+        "title": "GS Paper II — Polity, Governance & International Relations",
+        "children": [
+          {
+            "level": "topic",
+            "title": "Indian Constitution",
+            "children": [
+              {
+                "level": "subtopic",
+                "title": "Fundamental Rights and Duties",
+                "children": [
+                  {
+                    "level": "micro",
+                    "title": "Fundamental Rights",
+                    "content": {
+                      "summary": "The six Fundamental Rights in Part III of the Constitution, key articles and their enforceability.",
+                      "body_md": "## Fundamental Rights (Part III, Articles 12–35)\n\nFundamental Rights are **justiciable** — enforceable in court — and act as limitations on state power. They are inspired by the US Bill of Rights.\n\n### The Six Categories\n1. **Right to Equality (Art. 14–18)** — equality before law, no discrimination, equality of opportunity, abolition of untouchability and titles.\n2. **Right to Freedom (Art. 19–22)** — six freedoms (speech, assembly, association, movement, residence, profession); protection of life and personal liberty (**Art. 21**).\n3. **Right against Exploitation (Art. 23–24)** — bans human trafficking, forced labour and child labour.\n4. **Right to Freedom of Religion (Art. 25–28)**.\n5. **Cultural and Educational Rights (Art. 29–30)** — protects minorities.\n6. **Right to Constitutional Remedies (Art. 32)** — Dr. Ambedkar called it the **'heart and soul'** of the Constitution; empowers the Supreme Court to issue writs.\n\n### Important Notes\n- **Right to Property** was removed as a Fundamental Right by the 44th Amendment (1978); now a legal right under Art. 300A.\n- Art. 21 has been judicially expanded to include the right to privacy (*K.S. Puttaswamy*, 2017), clean environment, and education.\n- The five **writs**: Habeas Corpus, Mandamus, Prohibition, Certiorari, Quo Warranto.",
+                      "sources": [
+                        { "title": "The Constitution of India (Legislative Department)", "url": "https://legislative.gov.in/constitution-of-india/" },
+                        { "title": "NCERT — Indian Constitution at Work (Class XI)", "url": "https://ncert.nic.in/textbook.php" }
+                      ]
+                    }
+                  },
+                  {
+                    "level": "micro",
+                    "title": "Directive Principles of State Policy",
+                    "content": {
+                      "summary": "Part IV DPSPs — non-justiciable guidelines for governance, their classification and relationship with Fundamental Rights.",
+                      "body_md": "## Directive Principles of State Policy (Part IV, Articles 36–51)\n\nDPSPs are **non-justiciable** ideals borrowed from the **Irish Constitution**, meant to guide the State in making laws to establish a welfare state.\n\n### Classification\n- **Socialist Principles** — e.g. adequate means of livelihood (Art. 39), equal pay, public assistance (Art. 41).\n- **Gandhian Principles** — village panchayats (Art. 40), promotion of cottage industries, prohibition (Art. 47).\n- **Liberal–Intellectual Principles** — uniform civil code (Art. 44), separation of judiciary from executive (Art. 50), protection of environment (Art. 48A).\n\n### Relationship with Fundamental Rights\n- Initially seen as subordinate (*Champakam Dorairajan*, 1951).\n- The **Minerva Mills case (1980)** held that **harmony and balance** between FRs and DPSPs is part of the basic structure.\n- Art. 31C protects laws implementing certain DPSPs.\n\n### Significance\nThough not enforceable, DPSPs are **'fundamental in the governance of the country'** (Art. 37) and provide the standard by which to judge a government's performance.",
+                      "sources": [
+                        { "title": "The Constitution of India (Legislative Department)", "url": "https://legislative.gov.in/constitution-of-india/" },
+                        { "title": "NCERT — Indian Constitution at Work (Class XI)", "url": "https://ncert.nic.in/textbook.php" }
+                      ]
+                    }
+                  },
+                  { "level": "micro", "title": "Fundamental Duties (Article 51A)" }
+                ]
+              },
+              { "level": "subtopic", "title": "Federal Structure and Centre-State Relations" },
+              { "level": "subtopic", "title": "Separation of Powers and Constitutional Bodies" }
+            ]
+          },
+          {
+            "level": "topic",
+            "title": "Governance",
+            "children": [
+              { "level": "micro", "title": "e-Governance and Citizen Charters" },
+              { "level": "micro", "title": "Role of Civil Services in a Democracy" }
+            ]
+          },
+          {
+            "level": "topic",
+            "title": "International Relations",
+            "children": [
+              { "level": "micro", "title": "India and its Neighbourhood" },
+              { "level": "micro", "title": "Important International Institutions" }
+            ]
+          }
+        ]
+      },
+      {
+        "level": "paper",
+        "title": "GS Paper III — Economy, Science-Tech, Environment & Security",
+        "children": [
+          {
+            "level": "topic",
+            "title": "Indian Economy",
+            "children": [
+              {
+                "level": "micro",
+                "title": "Inclusive Growth",
+                "content": {
+                  "summary": "Meaning, dimensions and challenges of inclusive growth in India, with relevant government initiatives.",
+                  "body_md": "## Inclusive Growth\n\n**Inclusive growth** is economic growth that is **broad-based across sectors and inclusive of the labour force**, ensuring equality of opportunity and reducing poverty and inequality.\n\n### Key Dimensions\n- **Social inclusion** — access to health, education and basic services.\n- **Financial inclusion** — banking the unbanked (e.g. **PM Jan Dhan Yojana**, UPI).\n- **Economic inclusion** — productive employment and skill development.\n- **Regional balance** — reducing rural–urban and inter-state disparities.\n\n### Challenges in India\n- Jobless growth and a large **informal sector**.\n- Agricultural distress and disguised unemployment.\n- Persisting inequality (income, gender, regional).\n\n### Government Initiatives\n- **MGNREGA** (rural employment guarantee), **PM-KISAN**, **Ayushman Bharat** (health), **Skill India**, **Stand-Up/Start-Up India**, and **Direct Benefit Transfer (DBT)** to plug leakages.\n\n### Way Forward\nInvest in human capital, formalise the economy, strengthen MSMEs, and use technology (JAM trinity: Jan Dhan–Aadhaar–Mobile) for targeted delivery.",
+                  "sources": [
+                    { "title": "NITI Aayog", "url": "https://www.niti.gov.in/" },
+                    { "title": "Economic Survey of India (Ministry of Finance)", "url": "https://www.indiabudget.gov.in/economicsurvey/" }
+                  ]
+                }
+              },
+              { "level": "micro", "title": "Fiscal and Monetary Policy" },
+              { "level": "micro", "title": "Agriculture and Food Security" }
+            ]
+          },
+          {
+            "level": "topic",
+            "title": "Environment and Biodiversity",
+            "children": [
+              {
+                "level": "micro",
+                "title": "Climate Change",
+                "content": {
+                  "summary": "Drivers and impacts of climate change, global frameworks and India's commitments.",
+                  "body_md": "## Climate Change\n\nClimate change refers to long-term shifts in temperature and weather patterns, driven largely by **anthropogenic greenhouse gas (GHG) emissions** (CO₂, methane, nitrous oxide).\n\n### Impacts on India\n- Erratic monsoons, more frequent floods and droughts.\n- Glacial retreat in the Himalayas; sea-level rise threatening coastal cities.\n- Stress on agriculture, water security and public health.\n\n### Global Framework\n- **UNFCCC (1992)** → **Kyoto Protocol (1997)** → **Paris Agreement (2015)**: limit warming to well below **2°C**, ideally **1.5°C**.\n- The **IPCC** provides the scientific assessment.\n\n### India's Commitments\n- **Updated NDCs:** reduce emissions intensity of GDP by 45% (from 2005 levels) by 2030; 50% non-fossil installed capacity by 2030.\n- **Net Zero by 2070** (announced at COP26).\n- Missions under the **National Action Plan on Climate Change (NAPCC)**, **International Solar Alliance**, and **LiFE (Lifestyle for Environment)**.\n\n### Way Forward\nEnergy transition (solar/wind/green hydrogen), climate-resilient agriculture, and climate finance with the principle of **Common But Differentiated Responsibilities (CBDR)**.",
+                  "sources": [
+                    { "title": "Ministry of Environment, Forest and Climate Change", "url": "https://moef.gov.in/" },
+                    { "title": "IPCC — Intergovernmental Panel on Climate Change", "url": "https://www.ipcc.ch/" }
+                  ]
+                }
+              },
+              { "level": "micro", "title": "Conservation — Protected Areas and Acts" }
+            ]
+          },
+          {
+            "level": "topic",
+            "title": "Science and Technology",
+            "children": [
+              { "level": "micro", "title": "Space Technology and ISRO Missions" },
+              { "level": "micro", "title": "Biotechnology and Health" }
+            ]
+          },
+          {
+            "level": "topic",
+            "title": "Internal Security",
+            "children": [
+              { "level": "micro", "title": "Linkages of Organised Crime with Terrorism" },
+              { "level": "micro", "title": "Role of Security Forces and Agencies" }
+            ]
+          }
+        ]
+      },
+      {
+        "level": "paper",
+        "title": "GS Paper IV — Ethics, Integrity & Aptitude",
+        "children": [
+          {
+            "level": "topic",
+            "title": "Ethics and Human Interface",
+            "children": [
+              {
+                "level": "micro",
+                "title": "Ethics, Values and their Determinants",
+                "content": {
+                  "summary": "Essence and determinants of ethics, the difference between ethics, morals and values, and their relevance in public administration.",
+                  "body_md": "## Ethics and Human Interface\n\n**Ethics** is the systematic study of what is right and wrong — the standards that govern human conduct.\n\n### Key Distinctions\n- **Ethics** — rational, systematic standards of conduct (the 'science' of morality).\n- **Morals** — personal beliefs about right and wrong, often from culture/religion.\n- **Values** — enduring beliefs that guide preferences (e.g. honesty, compassion).\n\n### Determinants of Ethics\n- **Internal:** conscience, reason, individual character.\n- **External:** family, society, religion, law, peer group, constitution and institutions.\n\n### Consequences of Ethics in Human Action\nEthical conduct builds **trust, accountability and social capital**; its absence leads to corruption, conflict and erosion of institutions.\n\n### Relevance in Public Administration\n- **Integrity, objectivity, impartiality and non-partisanship** are core civil-service values.\n- The **Nolan Committee's Seven Principles of Public Life** (selflessness, integrity, objectivity, accountability, openness, honesty, leadership) are widely cited.\n- Dimensions of ethics: descriptive, normative, meta-ethics and applied ethics.",
+                  "sources": [
+                    { "title": "2nd Administrative Reforms Commission — Ethics in Governance", "url": "https://darpg.gov.in/arc-reports" },
+                    { "title": "Department of Administrative Reforms & Public Grievances", "url": "https://darpg.gov.in/" }
+                  ]
+                }
+              },
+              { "level": "micro", "title": "Human Values — Lessons from Leaders and Reformers" }
+            ]
+          },
+          { "level": "topic", "title": "Attitude and Foundational Values for Civil Service" },
+          { "level": "topic", "title": "Emotional Intelligence" },
+          { "level": "topic", "title": "Probity in Governance" },
+          { "level": "topic", "title": "Case Studies" }
+        ]
+      }
+    ]
+  }
+]
