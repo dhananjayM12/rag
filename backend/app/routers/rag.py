@@ -30,16 +30,12 @@ def ask(req: AskRequest, db: Session = Depends(get_db)) -> AskResponse:
     for r in results:
         if r.score <= 0:
             continue
-        if r.chunk.node_slug not in seen_nodes:
-            seen_nodes.add(r.chunk.node_slug)
+        if r.kind == "topic" and r.slug and r.slug not in seen_nodes:
+            seen_nodes.add(r.slug)
             related.append(
-                RelatedTopic(
-                    slug=r.chunk.node_slug,
-                    title=r.chunk.node_title,
-                    score=round(r.score, 3),
-                )
+                RelatedTopic(slug=r.slug, title=r.title, score=round(r.score, 3))
             )
-        for s in r.chunk.sources_list:
+        for s in r.sources:
             key = (s.get("title", ""), s.get("url"))
             if key not in seen_sources:
                 seen_sources.add(key)

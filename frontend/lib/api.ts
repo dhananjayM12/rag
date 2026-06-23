@@ -66,6 +66,19 @@ export function fetchContent(slug: string): Promise<ContentOut> {
   return getJSON<ContentOut>(`/api/content/${encodeURIComponent(slug)}`);
 }
 
+export interface Article {
+  id: number;
+  source: string;
+  title: string;
+  url?: string | null;
+  published_at?: string | null;
+  summary: string;
+}
+
+export function fetchArticles(limit = 30): Promise<Article[]> {
+  return getJSON<Article[]>(`/api/articles?limit=${limit}`);
+}
+
 export interface RelatedTopic {
   slug: string;
   title: string;

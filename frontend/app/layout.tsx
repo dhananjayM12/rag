@@ -25,6 +25,9 @@ export default function RootLayout({
               <Link href="/flowchart" className="hover:text-brand">
                 Syllabus Map
               </Link>
+              <Link href="/current-affairs" className="hover:text-brand">
+                Current Affairs
+              </Link>
               <Link href="/ask" className="hover:text-brand">
                 Ask AI
               </Link>

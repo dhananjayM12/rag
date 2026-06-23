@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
-from app.routers import content, evaluate, rag, syllabus
+from app.routers import articles, content, evaluate, rag, syllabus
 
 app = FastAPI(
     title="UPSC Study App API",
@@ -23,6 +23,7 @@ app.include_router(syllabus.router)
 app.include_router(content.router)
 app.include_router(rag.router)
 app.include_router(evaluate.router)
+app.include_router(articles.router)
 
 
 @app.get("/api/health")

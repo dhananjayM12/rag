@@ -49,6 +49,15 @@ class ContentOut(BaseModel):
 # ---- Stub feature schemas (RAG + answer evaluation) ----
 
 
+class ArticleOut(BaseModel):
+    id: int
+    source: str
+    title: str
+    url: str | None = None
+    published_at: str | None = None
+    summary: str
+
+
 class AskRequest(BaseModel):
     question: str
     node_slug: str | None = None

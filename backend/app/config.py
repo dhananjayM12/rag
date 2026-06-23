@@ -20,6 +20,25 @@ class Settings(BaseSettings):
     ollama_model: str = "llama3"
     rag_top_k: int = 4
 
+    # Official-source ingestion (RSS feeds; official/open sources only).
+    # Comma-separated "Name|url" pairs. Run `python -m app.rag.ingest_sources`.
+    source_feeds: str = (
+        "PIB|https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3,"
+        "PRS|https://prsindia.org/rss.xml"
+    )
+    source_fetch_timeout: int = 20
+    source_max_items_per_feed: int = 40
+
+    @property
+    def source_feed_list(self) -> list[tuple[str, str]]:
+        pairs: list[tuple[str, str]] = []
+        for entry in self.source_feeds.split(","):
+            entry = entry.strip()
+            if "|" in entry:
+                name, url = entry.split("|", 1)
+                pairs.append((name.strip(), url.strip()))
+        return pairs
+
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
     @property

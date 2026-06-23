@@ -6,9 +6,13 @@ A commercializable UPSC preparation web app.
   from exam → paper → topic → subtopic → **micro-topic leaf nodes that carry
   source-backed study content**.
 - **Milestone 2** — a **local RAG Q&A** system (`/ask`): questions are embedded,
-  matched against ingested official-source content via vector search, and
-  answered with citations. Runs fully locally; pluggable embedder (hashing or
+  matched against indexed content via vector search, and answered with
+  citations. Runs fully locally; pluggable embedder (hashing or
   sentence-transformers) and LLM (extractive or Ollama).
+- **Milestone 3** — **official-source ingestion**: pulls current-affairs items
+  from official RSS feeds (PIB, PRS), stores them as `articles`, and indexes
+  them into the same retrieval pipeline so the AI can answer about the latest
+  updates with source links. Browse them at `/current-affairs`.
 
 Mains answer-evaluation remains a wired stub for the next milestone.
 
@@ -100,11 +104,29 @@ question → embed → vector search (pgvector / cosine) → top-k chunks
   `app/services/embeddings.py`. Switch backends via env (`EMBEDDING_BACKEND`,
   `LLM_BACKEND`) — see `backend/.env.example`.
 
+## Official-source ingestion (Milestone 3)
+
+```bash
+# Fetch + index the configured feeds (PIB, PRS by default):
+python -m app.rag.ingest_sources
+```
+
+- Feeds are set via `SOURCE_FEEDS` ("Name|url" pairs) in `backend/.env.example`.
+  Official/open sources only — commercially safe.
+- Connectors live in `app/rag/sources/` (RSS via the standard library; add new
+  connectors by implementing `SourceConnector`). A failing feed is skipped, not
+  fatal. Articles are de-duped on `(source, external_id)`.
+- Ingested articles are chunked + embedded into `article_chunks` and retrieved
+  alongside seeded content, so `/ask` can cite current affairs. List endpoint:
+  `GET /api/articles`; UI at `/current-affairs`.
+- Not run at container start (network may be restricted) — run it manually or on
+  a schedule (cron).
+
 ## Roadmap (scaffolded, build next)
 
 - **Answer evaluation** (`/api/evaluate`): rubric-based grading with a local LLM.
-- **Source ingestion**: pull fresh content from official feeds (PIB, PRS, etc.)
-  into the same chunk/embed pipeline for current-affairs coverage.
+- **Tag articles to syllabus nodes** so current affairs appear on the relevant
+  micro-topic pages.
 - **Student features**: progress tracking + spaced revision, previous-year-question
   mapping to leaf nodes, current-affairs feed tagged to syllabus nodes, auth +
   subscription tiers, PWA/offline.

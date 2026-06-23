@@ -7,6 +7,7 @@ from sqlalchemy import (
     Integer,
     String,
     Text,
+    UniqueConstraint,
     func,
 )
 from sqlalchemy.types import TypeDecorator
@@ -142,6 +143,47 @@ class ContentChunk(Base):
             return json.loads(self.sources or "[]")
         except json.JSONDecodeError:
             return []
+
+
+class Article(Base):
+    """A document ingested from an official/open source (e.g. PIB, PRS).
+
+    Powers current-affairs coverage and feeds the same RAG retrieval as the
+    seeded syllabus content. De-duplicated on (source, external_id).
+    """
+
+    __tablename__ = "articles"
+    __table_args__ = (
+        UniqueConstraint("source", "external_id", name="uq_article_source_extid"),
+    )
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    source: Mapped[str] = mapped_column(String(50), index=True)  # PIB | PRS | ...
+    external_id: Mapped[str] = mapped_column(String(600))
+    title: Mapped[str] = mapped_column(String(600))
+    url: Mapped[str | None] = mapped_column(String(800), nullable=True)
+    published_at: Mapped[str | None] = mapped_column(String(60), nullable=True)
+    body: Mapped[str] = mapped_column(Text, default="")
+    fetched_at: Mapped["DateTime"] = mapped_column(
+        DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
+    )
+
+
+class ArticleChunk(Base):
+    """A retrievable chunk of an ingested article, with its embedding."""
+
+    __tablename__ = "article_chunks"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    article_id: Mapped[int] = mapped_column(
+        ForeignKey("articles.id", ondelete="CASCADE"), index=True
+    )
+    source: Mapped[str] = mapped_column(String(50))
+    title: Mapped[str] = mapped_column(String(600))
+    url: Mapped[str | None] = mapped_column(String(800), nullable=True)
+    position: Mapped[int] = mapped_column(Integer, default=0)
+    text: Mapped[str] = mapped_column(Text)
+    embedding = mapped_column(Embedding, nullable=True)
 
 
 class UserProgress(Base):

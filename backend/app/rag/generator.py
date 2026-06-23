@@ -31,20 +31,18 @@ PROMPT_TEMPLATE = (
 
 
 def _build_context(results: list[RetrievedChunk]) -> str:
-    return "\n\n---\n\n".join(
-        f"[{r.chunk.node_title}]\n{r.chunk.text}" for r in results
-    )
+    return "\n\n---\n\n".join(f"[{r.title}]\n{r.text}" for r in results)
 
 
 def extractive_answer(results: list[RetrievedChunk]) -> str:
     if not results:
         return NO_CONTEXT
     top = results[0]
-    answer = top.chunk.text
-    # Add a second passage if it's from a different topic and still relevant.
+    answer = top.text
+    # Add a second passage if it's from a different topic/article and relevant.
     for r in results[1:]:
-        if r.chunk.node_id != top.chunk.node_id and r.score > 0.1:
-            answer += f"\n\n**Related — {r.chunk.node_title}:**\n{r.chunk.text}"
+        if r.title != top.title and r.score > 0.1:
+            answer += f"\n\n**Related — {r.title}:**\n{r.text}"
             break
     return answer
 
